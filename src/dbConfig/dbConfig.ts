@@ -10,7 +10,8 @@ export async function connect() {
 
         })
         connection.on('error',(err)=>{
-            console.log("Nongodb successfully not connected");
+            console.log("Nongodb successfully not connected" + err);
+            process.exit();
 
         })
         
