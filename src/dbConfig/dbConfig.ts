@@ -6,7 +6,7 @@ export async function connect() {
         const connection=mongoose.connection;
 
         connection.on('connected',()=>{
-            console.log("Nongodb successfully connected");
+            console.log("mongodb successfully connected");
 
         })
         connection.on('error',(err)=>{
