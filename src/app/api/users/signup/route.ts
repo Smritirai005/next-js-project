@@ -8,7 +8,7 @@ connect()
 export async function POST(request: NextResponse) {
     try {
         const reqBody=await request.json()
-        const {userame,email,password}=reqBody
+        const {username,email,password}=reqBody
         const user=await User.findOne({email})
         if(user){
             return NextResponse.json({error:"User already exist"},{status: 400})
@@ -19,8 +19,23 @@ export async function POST(request: NextResponse) {
         const salt=await bcryptjs.gensalt(10)
         const hashedPassword=await bcryptjs.hash
         (password,salt)
-    } catch (error) {
-        
+
+        const newUser=new User({
+            username,
+            email,
+            password:hashedPassword,
+
+
+        })
+        const savedUser=await newUser.save()
+        return NextResponse.json({
+            message:"Usercreated successfully ",
+            success:true,
+            savedUser
+        })
+    } catch (error:any) {
+        return NextResponse.json({error: error.message},
+        {status:500})
     }
     
 }

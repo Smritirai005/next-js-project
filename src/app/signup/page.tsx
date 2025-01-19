@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 
 
@@ -16,6 +17,13 @@ export default function SignupPage(){
 
     })
     const onSignup=async ()=>{
+        try {
+            const response=await axios.post("/api/users/signup",user)
+        } catch (error:any) {
+            toast.error(error.message);
+            
+        }
+        router.push("/login")
         
     }
     useEffect(()=>{
