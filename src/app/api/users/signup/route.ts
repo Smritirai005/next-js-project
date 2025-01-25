@@ -17,7 +17,7 @@ export async function POST(request: NextResponse) {
 
         }
         //hash password
-        const salt=await bcryptjs.gensalt(10)
+        const salt=await bcryptjs.genSalt(10)
         const hashedPassword=await bcryptjs.hash
         (password,salt)
 
