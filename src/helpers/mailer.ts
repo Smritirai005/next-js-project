@@ -1,5 +1,6 @@
-import nodemailer from 'nodemailer';
-import bcryptjs from 'bcryptjs';
+const nodemailer = require('nodemailer');
+const bcryptjs = require('bcryptjs');
+
 
 import User from '@/models/userModel';
 
